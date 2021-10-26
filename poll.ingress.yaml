@@ -6,4 +6,6 @@ metadata:
   name: poll-ingress
 spec:
   rules:
-    - host: poll.dop.io  
+    - host: poll.dop.io 
+      #http:
+      #  paths:   ### further routing cases
