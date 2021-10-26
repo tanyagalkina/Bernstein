@@ -50,7 +50,6 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5432
-          ### just left it here for now, then move to the config file    
           env:
             - name: POSTGRES_USER
               valueFrom:
@@ -64,12 +63,25 @@ spec:
                   name: postgres-secret
                   key: db_pwd  
 
-# POSTGRES_HOST                
-#• POSTGRES_PORT
-#• POSTGRES_DB  
-          volumeMounts:
-            - mountPath: /var/lib/postgresql/data
-              name: postgres-volume
+            - name: POSTGRES_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: posgres-configmap
+                  key: postgres-host
 
+                    
+            - name: POSTGRES_PORT              
+              valueFrom:                       
+                 configMapKeyRef:                     
+                    name: posgres-configmap
+                    key: postgres-port
+
+            - name: POSTGRES_DB      
+               valueFrom:             
+                configMapKeyRef:     
+                  name: posgres-configmap 
+                  key: postgres-db
     
-
+            volumeMounts:
+              - mountPath: /var/lib/postgresql/data
+                name: postgres-volume
