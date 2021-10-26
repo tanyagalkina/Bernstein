@@ -28,7 +28,7 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      service: traefik
+      k8s-app: traefik
       stage: progressiv
   template:
     metadata:
@@ -44,6 +44,8 @@ spec:
           image: traefik:1.7
           ports:
             - name: http
-              containerport
+              containerPort: 80
+            - name: admin
+              containerPort: 8080
             
 

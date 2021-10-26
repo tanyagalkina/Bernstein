@@ -1,0 +1,9 @@
+## Has a Traefik rule matching poll.dop.io host and proxying to poll service.
+
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: poll-ingress
+spec:
+  rules:
+    - host: poll.dop.io  
