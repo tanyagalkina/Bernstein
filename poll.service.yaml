@@ -1,3 +1,32 @@
 ## the service should be exposed externally
 #therefore it goes first to ingress, and then we have to figure it out
 #the Service Type will be probably NOT ClusterIP
+#
+#
+#poll:
+#• Based on epitechcontent/t-dop-600-poll:k8s.
+#• Namespace: default.
+#• Replicated: once (== 2 instances).
+#• Always restarts.
+#• Memory limit of 128M.
+#• Exposes port 80.
+#• Has a Traefik rule matching poll.dop.io host and proxying to poll service.
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: poll
+  name: poll-service
+  namespace: default
+spec:
+    selector:
+      app: poll
+      stage: terrible
+    type: LoadBalancer    
+    ports:
+      - protocol: TCP
+        port: 60000
+        targetPort: 80
+          ## nodePort range: 30 000 <-> 32 000+  
+          ##nodePort: 30021  

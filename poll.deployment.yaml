@@ -7,7 +7,11 @@
 #• Exposes port 80.
 #• Has a Traefik rule matching poll.dop.io host and proxying to poll service.
 #• Environment variables:
-#• REDIS_HOST
+#• REDIS_HOST -> because of:: -> ->
+
+
+#- Poll, a Flask Python web application
+#that gathers votes and push them into a Redis queue
 
 apiVersion: apps/v1
 kind: Deployment
@@ -16,7 +20,7 @@ metadata:
   namespace: default  
   labels:
     app: poll
-    stage: backstage
+    stage: terrible
 
 spec:
   replicas: 2
@@ -34,6 +38,14 @@ spec:
       containers:
         - name: poll-container
           image: epitechcontent/t-dop-600-poll:k8s
-          ports:
-            - containerPort: 80
+            #ports:
+            #- containerPort: 80
+          env:
+            - name: "PORT"
+              value: "80"
+            - name: REDIS_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: redis-configmap
+                  key: redis-host 
 
