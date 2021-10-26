@@ -1,0 +1,3 @@
+## the service should be exposed externally
+#therefore it goes first to ingress, and then we have to figure it out
+#the Service Type will be probably NOT ClusterIP

@@ -1,0 +1,14 @@
+#worker:
+#• Based on epitechcontent/t-dop-600-worker:k8s.
+#• Namespace: default.
+#• Not replicated.
+#• Memory limit of 256M.
+#• Always restarts.
+#• Is not enabled in Traefik.
+#• Environment variables:
+#• REDIS_HOST
+#• POSTGRES_HOST
+#• POSTGRES_PORT
+#• POSTGRES_DB
+#• POSTGRES_USER
+#• POSTGRES_PASSWORD

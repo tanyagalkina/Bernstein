@@ -1,0 +1,50 @@
+#DATABASES
+#redis:
+#• Based on redis:5.0.
+#• Namespace: default.
+#• Not replicated.
+#• Always restarts.
+#• Exposes port 6379.
+#• Is not enabled in Traefik.
+#
+
+
+#DEPLOYMENT DESCRIBES THE ***DESIRED STATE***
+## which version should I use? it DOES matter ...
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-deployment
+  namespace: default  ## it is default, though  
+  labels:
+    app: redis-deployment
+    stage: back
+  
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+      stage: backstage
+        ##### WHY is it inside teh template??            
+  template:
+    metadata:
+      labels:
+        app: redis
+        stage: backstage
+  
+    spec:
+      restartPolicy: Always
+        # volumes: ###++++++
+      containers:
+        - name: redis
+          image: redis:5.0
+          imagePullPolicy: IfNotPresent  
+          ports:
+            - containerPort: 6379
+              #volumeMounts:
+              #- mountPath: #///bla
+              #name: redis-volume
+              
+          

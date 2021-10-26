@@ -1,0 +1,14 @@
+#result:
+#• Based on epitechcontent/t-dop-600-result:k8s.
+#• Namespace: default.
+#• Replicated: once (== 2 instances).
+#• Memory limit of 128M.
+#• Always restarts.
+#• Exposes port 80.
+#• Has a Traefik rule matching result.dop.io host and proxying to result service.
+#• Environment variables:
+#• POSTGRES_HOST
+#• POSTGRES_PORT
+#• POSTGRES_DB
+#• POSTGRES_USER
+#• POSTGRES_PASSWORD

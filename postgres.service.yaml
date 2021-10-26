@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-service
+spec:
+  type: ClusterIp  ## it is like this by default.. internal because it is a DB!
+  selector:
+    app: postgres-db
+    stage: development
+  ports:
+    #- protocol:  ***
+    port: ???
+    targetPort: 5432

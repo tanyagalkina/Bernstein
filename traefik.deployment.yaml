@@ -1,0 +1,8 @@
+#traefik:
+#• Based on traefik:1.7.
+#• Namespace: kube-public.
+#• Replicated: once (== 2 instances).
+#• Always restarts
+#• Needs authorization to access Kubernetes internal API.
+#• Exposes port 80 (HTTP proxy) and 8080 (admin dashboard) into Kubernetes cluster.
+#• Exposes port 30021 (HTTP proxy) and 30042 (admin dashboard) on host.

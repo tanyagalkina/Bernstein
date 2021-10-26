@@ -1,0 +1,39 @@
+#poll:
+#• Based on epitechcontent/t-dop-600-poll:k8s.
+#• Namespace: default.
+#• Replicated: once (== 2 instances).
+#• Always restarts.
+#• Memory limit of 128M.
+#• Exposes port 80.
+#• Has a Traefik rule matching poll.dop.io host and proxying to poll service.
+#• Environment variables:
+#• REDIS_HOST
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: poll-deployment
+  namespace: default  
+  labels:
+    app: poll
+    stage: backstage
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: poll
+      stage: terrible  
+  template:
+    metadata:
+      labels:
+        app: poll
+        stage: terrible  
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: poll-container
+          image: epitechcontent/t-dop-600-poll:k8s
+          ports:
+            - containerPort: 80
+

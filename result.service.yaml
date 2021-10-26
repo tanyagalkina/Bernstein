@@ -1,0 +1,2 @@
+## the service has to be exposed externally.. so it goes to ingress first ..
+#then we havt to figure out .. the type will be apperantly NOT ClusterIP

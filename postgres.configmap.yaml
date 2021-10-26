@@ -1,0 +1,20 @@
+#• Environment variables:
+#• POSTGRES_HOST
+#• POSTGRES_PORT
+#• POSTGRES_DB
+#• POSTGRES_USER   -> ->
+#• POSTGRES_PASSWORD -> -> 
+#-> #POSTGRES_USER and POSTGRES_PASSWORD must be stored in Kubernetes’ Secrets.
+
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-configmap
+  namespace: default
+  labels:
+    *****
+data:
+  POSTGRES_HOST:
+    POSTGRES_PORT:
+      POSTGRES_DB:  

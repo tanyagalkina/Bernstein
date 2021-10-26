@@ -1,0 +1,27 @@
+#MONITORING TOOL
+#cadvisor:
+#• Based on google/cadvisor:latest.
+#• Namespace: kube-system.
+#• Scheduled on all nodes.
+#• Always restarts.
+#• Exposes port 8080.
+#
+
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: cadvisor-set
+  namespace: kube-system
+
+spec:
+  selector:
+    matchLabels:
+      name: cadvisor
+  template:
+    restartPolicy: Always
+    containers:
+    - name: cadvisor
+      image: cadvisor:latest
+      
+      ports:
+        - containerPort: 8080

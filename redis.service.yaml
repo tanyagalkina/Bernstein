@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service     ## ClusterIP, default type
+                  ## service is not available for external access (outside the clus#ter)
+metadata: redis-service
+spec:
+  selector:
+    app: redis
+    stage: backstage
+  type: ClusterIp  ## it is like this by default
+  ports:
+    - protocol: ???***
+      port: # value of the port exposed be the service where internal Pods can 
+        #communicate ---the port which ingress is looking for??
+
+      targetPort: #the port on which the redis (app) (in deployment)is listening  
+                  #value of the port exposed by the container
+
