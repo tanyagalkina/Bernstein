@@ -16,12 +16,16 @@ metadata:
 spec:
   selector:
     matchLabels:
-      name: cadvisor
+      service: cadvisor
   template:
-    restartPolicy: Always
-    containers:
-    - name: cadvisor
-      image: cadvisor:latest
+    name: cadvisor
+    labels:
+      service: cadvisor
+    spec:
+      restartPolicy: Always
+      containers:
+      - name: cadvisor
+        image: cadvisor:latest
       
-      ports:
-        - containerPort: 8080
+        ports:
+          - containerPort: 8080
