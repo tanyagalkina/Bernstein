@@ -1,6 +1,7 @@
 ## the service should be exposed externally
 #therefore it goes first to ingress, and then we have to figure it out
-#the Service Type will be probably NOT ClusterIP
+#the Service Type will be probably NOT ClusterIP  no, it will be ClusterIP,
+#becasue the ingress take care of the stuff
 #
 #
 #poll:
@@ -23,10 +24,10 @@ spec:
     selector:
       app: poll
       stage: terrible
-    type: LoadBalancer    
+    type: ClusterIP
     ports:
       - protocol: TCP
-        port: 60000
+        port: 80 ##for simplicity
         targetPort: 80
           ## nodePort range: 30 000 <-> 32 000+  
           ##nodePort: 30021  

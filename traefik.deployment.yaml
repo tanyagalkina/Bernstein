@@ -6,3 +6,44 @@
 #• Needs authorization to access Kubernetes internal API.
 #• Exposes port 80 (HTTP proxy) and 8080 (admin dashboard) into Kubernetes cluster.
 #• Exposes port 30021 (HTTP proxy) and 30042 (admin dashboard) on host.
+
+
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: traefik-ingress-controller
+  namespace: kube-public  
+
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: traefik-ingress-controller
+  namespace: kube-public
+  labels:
+    k8s-app: traefik
+    stage: progressiv
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      service: traefik
+      stage: progressiv
+  template:
+    metadata:
+      labels:
+        k8s-app: traefik
+        name: traefik-ingress
+    spec:
+      serviceAccountName: traefik-ingress-controller
+      terminationGracePeriodSeconds: 60  
+      restartPolicy: Always
+      containers:
+        - name: traefik-container
+          image: traefik:1.7
+          ports:
+            - name: http
+              containerport
+            
+
