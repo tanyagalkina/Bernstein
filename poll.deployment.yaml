@@ -41,15 +41,13 @@ spec:
             ##'.spec.template.spec.containers[0].ports[0].containerPort' is missing
           ports:
           - containerPort: 80
+            #.spec.template.spec.containers[0].resources.limits.memory' is missing  
+          resources:
+            limits:
+              memory: "128Mi"
           envFrom:
             - configMapRef:
                 name: redis-configmap
-
-
-            #env:  
-            #- name: REDIS_HOST
-            #  valueFrom:
-            #    configMapKeyRef:
-            #      name: redis-configmap
-            #      key: redis-host 
+                  #spec.template.spec.affinity' is missing
+                  #affinity: 
 
