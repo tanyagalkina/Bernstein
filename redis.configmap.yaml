@@ -4,4 +4,4 @@ metadata:
   name: redis-configmap 
   namespace: default
 data:
-  redis-host: redis-service
+  REDIS-HOST: redis-service

@@ -14,7 +14,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: redis-deployment
+  name: redis-deploy
   namespace: default  ## it is default, though  
   labels:
     app: redis-deployment

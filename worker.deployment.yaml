@@ -49,6 +49,8 @@ spec:
                 name: postgres-secret
             - configMapRef:
                 name: postgres-configmap
+            - configMapRef:
+                name: redis-configmap
 
       
 #

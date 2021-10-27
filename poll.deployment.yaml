@@ -16,7 +16,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: poll-deployment
+  name: poll-deploy
   namespace: default  
   labels:
     app: poll
@@ -41,10 +41,15 @@ spec:
             ##'.spec.template.spec.containers[0].ports[0].containerPort' is missing
           ports:
           - containerPort: 80
-          env:  
-            - name: REDIS_HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: redis-configmap
-                  key: redis-host 
+          envFrom:
+            - configMapRef:
+                name: redis-configmap
+
+
+            #env:  
+            #- name: REDIS_HOST
+            #  valueFrom:
+            #    configMapKeyRef:
+            #      name: redis-configmap
+            #      key: redis-host 
 
