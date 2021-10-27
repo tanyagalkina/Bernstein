@@ -87,6 +87,6 @@ spec:
               #    name: posgres-configmap 
               #    key: postgres-db
     
-            volumeMounts:
-              - mountPath: /var/lib/postgresql/data
-                name: postgres-volume
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgres-volume
