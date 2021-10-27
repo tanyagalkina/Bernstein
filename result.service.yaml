@@ -1,2 +1,19 @@
 ## the service has to be exposed externally.. so it goes to ingress first ..
-#then we havt to figure out .. the type will be apperantly NOT ClusterIP
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: result
+  name: result-service
+  namespace: default
+spec:
+    selector:
+      app: result
+      stage: dead
+    type: ClusterIP
+    ports:
+      - protocol: TCP
+        port: 80 ##for simplicity
+        targetPort: 80
+          ## nodePort range: 30 000 <-> 32 000+  
+          ##nodePort: 30021  
