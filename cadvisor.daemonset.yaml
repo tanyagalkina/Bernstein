@@ -10,22 +10,27 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: cadvisor-set
+  name: cadvisor-daemonset
   namespace: kube-system
 
 spec:
   selector:
     matchLabels:
       service: cadvisor
+        #.spec.template.metadata.labels' is missing
   template:
-    name: cadvisor
-    labels:
-      service: cadvisor
+    metadata:
+      name: cadvisor
+      labels:
+        service: cadvisor-daemonset
+        stage: gone  
     spec:
       restartPolicy: Always
       containers:
-      - name: cadvisor
-        image: cadvisor:latest
+      - name: cadvisor-container
+        image: google/cadvisor:latest
       
         ports:
           - containerPort: 8080
+            #.spec.template.spec.volumes | lengtha
+    #'volumes: ???   

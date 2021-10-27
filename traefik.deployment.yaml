@@ -47,5 +47,6 @@ spec:
               containerPort: 80
             - name: admin
               containerPort: 8080
-            
+    #'.spec.template.spec.affinity' is missing  
+    # affinity:   ???    
 

@@ -43,6 +43,7 @@ spec:
           image: epitechcontent/t-dop-600-result:k8s
           ports:
             - containerPort: 80
+              #result.deployment.yaml - resources: KO   
           resources:
             limits:
               memory: "128Mi"   ## does it work jus like this?
@@ -52,4 +53,4 @@ spec:
             - configMapRef:
                 name: postgres-configmap
 
-
+                  ##result.deployment.yaml - affinity: KO
