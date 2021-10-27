@@ -12,11 +12,14 @@ kind: DaemonSet
 metadata:
   name: cadvisor-daemonset
   namespace: kube-system
+  annotations:
+    kubernetes.io/pod: 'docker/default'
 
 spec:
   selector:
     matchLabels:
-      service: cadvisor
+      service: cadvisor-daemonset
+      stage: gone  
         #.spec.template.metadata.labels' is missing
   template:
     metadata:
@@ -25,6 +28,7 @@ spec:
         service: cadvisor-daemonset
         stage: gone  
     spec:
+      serviceAccountName: cadvisor
       restartPolicy: Always
       containers:
       - name: cadvisor-container
@@ -32,5 +36,38 @@ spec:
       
         ports:
           - containerPort: 8080
+        volumeMounts:
+        - name: rootfs
+          mountPath: /rootfs
+          readOnly: true
+        - name: var-run
+          mountPath: /var/run
+          readOnly: true
+        - name: sys
+          mountPath: /sys
+          readOnly: true
+        - name: docker
+          mountPath: /var/lib/docker
+          readOnly: true
+        - name: disk
+          mountPath: /dev/disk
+          readOnly: true
             #.spec.template.spec.volumes | lengtha
-    #'volumes: ???   
+      automountServiceAccountToken: false
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: rootfs
+        hostPath:
+          path: /
+      - name: var-run
+        hostPath:
+          path: /var/run
+      - name: sys
+        hostPath:
+          path: /sys
+      - name: docker
+        hostPath:
+          path: /var/lib/docker
+      - name: disk
+        hostPath:
+          path: /dev/disk
