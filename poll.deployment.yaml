@@ -38,11 +38,10 @@ spec:
       containers:
         - name: poll-container
           image: epitechcontent/t-dop-600-poll:k8s
-            #ports:
-            #- containerPort: 80
-          env:
-            - name: "PORT"
-              value: "80"
+            ##'.spec.template.spec.containers[0].ports[0].containerPort' is missing
+          ports:
+          - containerPort: 80
+          env:  
             - name: REDIS_HOST
               valueFrom:
                 configMapKeyRef:
