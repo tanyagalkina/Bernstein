@@ -50,37 +50,42 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5432
-          env:
-            - name: POSTGRES_USER
-              valueFrom:
-                secretKeyRef:
-                  name: postgres-secret
-                  key: db_user  
+          envFrom:
+            - secretRef:
+                name: postgres-secret
+            - configMapRef:
+                name: postgres-configmap
+              # env:
+              #- name: POSTGRES_USER
+              #valueFrom:
+              #  secretKeyRef:
+              #   name: postgres-secret
+              #   key: db_user  
 
-            - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: postgres-secret
-                  key: db_pwd  
+              #- name: POSTGRES_PASSWORD
+              #valueFrom:
+              #  secretKeyRef:
+              #    name: postgres-secret
+              #    key: db_pwd  
 
-            - name: POSTGRES_HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: posgres-configmap
-                  key: postgres-host
+              #- name: POSTGRES_HOST
+              #valueFrom:
+              #  configMapKeyRef:
+              #    name: posgres-configmap
+              #    key: postgres-host
 
                     
-            - name: POSTGRES_PORT              
-              valueFrom:                       
-                 configMapKeyRef:                     
-                    name: posgres-configmap
-                    key: postgres-port
+              #- name: POSTGRES_PORT              
+              #valueFrom:                       
+              #   configMapKeyRef:                     
+              #      name: posgres-configmap
+              #      key: postgres-port
 
-            - name: POSTGRES_DB      
-               valueFrom:             
-                configMapKeyRef:     
-                  name: posgres-configmap 
-                  key: postgres-db
+              #- name: POSTGRES_DB      
+              # valueFrom:             
+              #  configMapKeyRef:     
+              #    name: posgres-configmap 
+              #    key: postgres-db
     
             volumeMounts:
               - mountPath: /var/lib/postgresql/data
