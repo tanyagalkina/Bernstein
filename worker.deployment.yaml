@@ -12,3 +12,44 @@
 #• POSTGRES_DB
 #• POSTGRES_USER
 #• POSTGRES_PASSWORD
+
+
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker-deploy
+  namespace: default
+  labels:
+    app: worker ## how this label correspond to service?? if it does??
+    stage: dead
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: worker
+      stage: dead
+  template:
+    metadata:
+      name: worker
+      labels:
+        app: worker
+        stage: dead
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: worker-container
+          image: epitechcontent/t-dop-600-worker:k8s 
+          resources:
+            limits:
+              memory: "256Mi"   ##does it work like this?
+          envFrom:
+            - secretRef:
+                name: postgres-secret
+            - configMapRef:
+                name: postgres-configmap
+
+      
+#
+#
