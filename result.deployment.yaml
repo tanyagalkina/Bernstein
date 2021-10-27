@@ -12,3 +12,44 @@
 #• POSTGRES_DB
 #• POSTGRES_USER
 #• POSTGRES_PASSWORD
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: result-deployment
+  namespace: default
+  labels:
+    app: result
+    stage: dead
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: result
+      stage: dead
+        ### in which way can deployment and pod labels differ??
+                  ## what labels is a service looking for?
+  template:
+    metadata:
+      labels:
+        app: result
+        stage: dead
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: result-container
+          image: epitechcontent/t-dop-600-result:k8s
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              memory: "128Mi"   ## does it work jus like this?
+          envFrom:
+            - secretRef:
+                name: postgres-secret   ### have to chenge the keys in the sercet and config
+            - configMapRef:
+                name: postgres-configmap
+
+
