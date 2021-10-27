@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: PersistantVolume
+metadata:
+  name: postgres-volume
+  namespace: default  
+
+spec:
+  storageClassName: manual
+  volumeName: postgres-volume  
+  capacity:
+    storage: 5Gi
+  accessModes:
+    -ReadWriteOnce
+  hostPath:
+    path: "/var/lib/postgresql/data"
+
+---
+
+apiVersion: apps/v1
+
+
+kind : PersistentVolumeClaim
+
+metadata:
+  name: postgres-pers-volume-claim
+  labels:
+    app: postgres-db
+    stage: development  
+spec:
+  storageClassName: manual
+  accessModes:
+    -ReadWriteOnce
+  resources:
+    requests:
+      storage: 512M

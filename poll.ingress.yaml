@@ -8,4 +8,6 @@ spec:
   rules:
     - host: poll.dop.io 
       #http:
-      #  paths:   ### further routing cases
+      #    paths:   ### further routing cases
+      #
+# wrong value for '.spec.rules[0].http.paths | length'
