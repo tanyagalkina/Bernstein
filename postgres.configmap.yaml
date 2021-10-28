@@ -12,12 +12,11 @@ kind: ConfigMap
 metadata:
   name: postgres-configmap
   namespace: default
-    #labels:
-    #*****
+  labels:
+    app: postgres-db
+    stage: development  
 data:
   POSTGRES_HOST: postgres-service
   POSTGRES_PORT: '5432'
-    ##POSTGRES_DB: ???  
-    ##postgres-host: postgres-service
-    ##postgres-port: 5432
+  POSTGRES_DB: postgres-db  
   ##postgres-db: ??? what should that be?? 
