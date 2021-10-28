@@ -1,13 +1,24 @@
 ## Has a Traefik rule matching poll.dop.io host and proxying to poll service.
 
-apiVersion: networking.k8s.io/v1beta1
+## use networking.k8s.io/v1 Ingress
+
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: poll-ingress
 spec:
   rules:
-    - host: poll.dop.io 
-      #http:
-      #    paths:   ### further routing cases
-      #
+  - host: poll.dop.io
+    http:
+      paths:
+        - path: /pol
+          pathType: Prefix
+          backend:
+            service:
+              name: poll-service
+              port:
+                number: 80  
+
+
+      
 # wrong value for '.spec.rules[0].http.paths | length'
