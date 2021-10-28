@@ -55,11 +55,27 @@ printf 'Create database manually after first deploy\n'
 
 ## try to get inside the container first .. it does not let me . it says it has no admin )))
 tput sgr0
+
+
 #echo "CREATE TABLE votes \
 #    (id text PRIMARY KEY, vote text NOT NULL);" \
 #| kubectl exec -i <postgres-deployment-id> -c <postgres-container-id> \
 #– psql -U <username>'
-kubectl exec -i $(kubectl get pods -o custom-columns=":metadata.name" | grep postgres) -- psql -U admin
+
+#kubectl exec -it $(kubectl get pod -o custom-columns=":metadata.name") -- sh
+
+
+#echo "CREATE TABLE votes \
+#    (id text PRIMARY KEY, vote text NOT NULL);" \
+#| kubectl exec -i $(kubectl get pod -o custom-columns=":metadata.name" \
+#| grep postgres) -c $(kubectl get deploy -o custom-columns=":spec.template.spec.container.name" \
+#| grep postgres-deployment)  -psql -U admin
+
+echo "CREATE TABLE votes \
+    (id text PRIMARY KEY, vote text NOT NULL);" \
+| kubectl exec -i $(kubectl get pods --no-headers -o custom-columns=":metadata.name" \
+| grep postgres) -- psql -U root -d posgres-db
+
 tput sgr0
 
 tput bold

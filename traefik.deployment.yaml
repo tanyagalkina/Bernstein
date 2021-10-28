@@ -18,6 +18,8 @@ metadata:
   namespace: kube-public  
 
 ---
+
+
 kind: Deployment
 apiVersion: apps/v1
 metadata:
