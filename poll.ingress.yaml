@@ -6,12 +6,13 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: poll-ingress
+  namespace: default  
 spec:
   rules:
   - host: poll.dop.io
     http:
       paths:
-        - path: /pol
+        - path: '/'
           pathType: Prefix
           backend:
             service:
