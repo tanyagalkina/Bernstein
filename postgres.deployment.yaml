@@ -42,7 +42,7 @@ spec:
       restartPolicy: Always
       volumes:
         - name: postgres-volume
-          persistantVolumeClaim:
+          persistentVolumeClaim:
             claimName: postgres-pers-volume-claim
       containers:
         - name: postgres

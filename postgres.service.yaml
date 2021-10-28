@@ -6,7 +6,7 @@ metadata:
   labels:
     service: postgres
 spec:
-  type: ClusterIp  ## it is like this by default.. internal because it is a DB!
+  type: ClusterIP  ## it is like this by default.. internal because it is a DB!
   selector:
     app: postgres-db
     stage: development
