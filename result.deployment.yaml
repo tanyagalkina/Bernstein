@@ -46,7 +46,7 @@ spec:
               #result.deployment.yaml - resources: KO   
           resources:
             limits:
-              memory: "128Mi"   ## does it work jus like this?
+              memory: "128M"   ## does it work jus like this?
           envFrom:
             - secretRef:
                 name: postgres-secret   ### have to chenge the keys in the sercet and config

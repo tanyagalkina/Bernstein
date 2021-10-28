@@ -3,6 +3,9 @@ kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: traefik-ingress-controller
+  namespace: kube-public
+  labels:
+    rbac: traefik
 rules:
   - apiGroups:
       - ""

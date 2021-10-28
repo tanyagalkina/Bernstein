@@ -44,7 +44,7 @@ spec:
             #.spec.template.spec.containers[0].resources.limits.memory' is missing  
           resources:
             limits:
-              memory: "128Mi"
+              memory: "128M"
           envFrom:
             - configMapRef:
                 name: redis-configmap
