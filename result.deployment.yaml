@@ -52,5 +52,21 @@ spec:
                 name: postgres-secret   ### have to chenge the keys in the sercet and config
             - configMapRef:
                 name: postgres-configmap
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - result  
+
+              - key: stage
+                operator: In
+                values:
+                - dead
+            topologyKey: "kubernetes.io/hostname"
+
 
                   ##result.deployment.yaml - affinity: KO

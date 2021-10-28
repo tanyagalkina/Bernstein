@@ -52,6 +52,24 @@ spec:
               containerPort: 80
             - name: admin
               containerPort: 8080
-    #'.spec.template.spec.affinity' is missing  
-    # affinity:   ???    
+          args:
+          - --api
+          - --kubernetes
+          - --logLevel=INFO
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: k8a-app
+                operator: In
+                values:
+                - traefik 
+              - key: stage
+                operator: In
+                values:
+                - progressiv  
+            topologyKey: "kubernetes.io/hostname"
+
+
 

@@ -19,7 +19,10 @@ spec:
               name: poll-service
               port:
                 number: 80  
-
+  #tls:
+  # - hosts:
+  #  - poll.dop.io
+  #  secretName: poll-secret-tls  
 
       
 # wrong value for '.spec.rules[0].http.paths | length'

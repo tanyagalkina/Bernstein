@@ -48,6 +48,22 @@ spec:
           envFrom:
             - configMapRef:
                 name: redis-configmap
+                  ## In order to improve high availability, replicated services must run on different nodes.
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - poll
+              
+              - key: stage  
+                operator: In
+                values:
+                - terrible  
+            topologyKey: "kubernetes.io/hostname"
                   #spec.template.spec.affinity' is missing
                   #affinity: 
 

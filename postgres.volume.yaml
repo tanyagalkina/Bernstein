@@ -12,7 +12,7 @@ spec:
   capacity:
     storage: 1Gi
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   hostPath:
     path: "/var/lib/postgresql/data"
 
@@ -28,7 +28,7 @@ metadata:
 spec:
   storageClassName: manual
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 1Gi
