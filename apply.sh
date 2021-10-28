@@ -51,7 +51,6 @@ kubectl apply -f traefik.rbac.yaml \
 tput bold
 tput setaf 1;
 printf 'Create database manually after first deploy\n'
-tput setaf 2;
 
 
 ## try to get inside the container first .. it does not let me . it says it has no admin )))
@@ -61,4 +60,14 @@ tput sgr0
 #| kubectl exec -i <postgres-deployment-id> -c <postgres-container-id> \
 #– psql -U <username>'
 kubectl exec -i $(kubectl get pods -o custom-columns=":metadata.name" | grep postgres) -- psql -U admin
+tput sgr0
+
+tput bold
+tput setaf 2;
+printf 'Adds 2 fake DNS to /etc/hosts'
+
+#echo "$(kubectl get nodes -o jsonpath='{ $.items[*].status.addresses[?(@.type=='ExternalIP')].address }')\
+#    poll.dop.io result.dop.io" \
+#    | sudo tee -a /etc/hosts
+echo " $(kubectl get nodes -o jsonpath='{ $.items[*].status.addresses[?(@.type =="ExternalIP")].address }') poll.dop.io result.dop.io" | sudo tee -a /etc/hosts
 tput sgr0
