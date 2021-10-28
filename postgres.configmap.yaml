@@ -16,7 +16,7 @@ metadata:
     app: postgres-db
     stage: development  
 data:
-  POSTGRES_HOST: postgres-service
+  POSTGRES_HOST: "postgres-service.default.svc.cluster.local"
   POSTGRES_PORT: '5432'
   POSTGRES_DB: postgres-db  
   ##postgres-db: ??? what should that be?? 

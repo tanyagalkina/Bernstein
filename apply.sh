@@ -73,8 +73,9 @@ tput sgr0
 
 echo "CREATE TABLE votes \
     (id text PRIMARY KEY, vote text NOT NULL);" \
-| kubectl exec -i $(kubectl get pods --no-headers -o custom-columns=":metadata.name" \
-| grep postgres) -- psql -U root -d posgres-db
+| kubectl exec -i $(kubectl get pod -o custom-columns=":metadata.name" \
+| grep postgres) \
+ -- psql -U OUTMANE -d postgres-db
 
 tput sgr0
 
