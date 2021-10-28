@@ -7,7 +7,9 @@
 #• Exposes port 80 (HTTP proxy) and 8080 (admin dashboard) into Kubernetes cluster.
 #• Exposes port 30021 (HTTP proxy) and 30042 (admin dashboard) on host.
 
-
+##evaluates ans processes ingress rules
+#manages redirections
+#entrypoint to cluster
 
 apiVersion: v1
 kind: ServiceAccount
@@ -34,6 +36,7 @@ spec:
     metadata:
       labels:
         k8s-app: traefik
+        stage: progressiv  
         name: traefik-ingress
     spec:
       serviceAccountName: traefik-ingress-controller

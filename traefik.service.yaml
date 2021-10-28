@@ -8,6 +8,7 @@ metadata:
 spec:
   selector:
     k8s-app: traefik
+    stage: progressiv 
   ports:
     - name: http
       protocol: TCP
