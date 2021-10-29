@@ -7,4 +7,4 @@ metadata:
     app: redis
     stage: backstage  
 data:
-  REDIS-HOST: "redis-service.default.svc.cluster.local"
+  REDIS_HOST: "redis-service.default.svc.cluster.local"
